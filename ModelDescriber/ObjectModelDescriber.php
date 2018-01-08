@@ -66,6 +66,7 @@ class ObjectModelDescriber implements ModelDescriberInterface, ModelRegistryAwar
                 $type = $type->getCollectionValueType();
                 if (null === $type) {
                     throw new \LogicException(sprintf('The sub type of the property "%s::$%s" is not detected by the PropertyInfo Component. Please update your code to make sure it is.', $class, $propertyName));
+                }
                 $property->setType('array');
                 $property = $property->getItems();
             }
