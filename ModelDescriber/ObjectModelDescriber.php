@@ -50,6 +50,8 @@ class ObjectModelDescriber implements ModelDescriberInterface, ModelRegistryAwar
             return;
         }
 
+        $this->swaggerPropertyAnnotationReader->updateSwaggerDefinition(new \ReflectionClass($class), $schema);
+    
         foreach ($propertyInfoProperties as $propertyName) {
             $property = $properties->get($propertyName);
 

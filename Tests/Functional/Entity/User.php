@@ -15,6 +15,8 @@ use Swagger\Annotations as SWG;
 
 /**
  * @author Guilhem N. <egetick@gmail.com>
+ *
+ * @SWG\Definition(required={"id", "email"})
  */
 class User
 {

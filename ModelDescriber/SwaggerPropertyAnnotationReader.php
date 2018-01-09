@@ -30,6 +30,13 @@ class SwaggerPropertyAnnotationReader
         $this->annotationsReader = $annotationsReader;
     }
 
+    public function updateSwaggerDefinition(\ReflectionClass $reflectionClass, Schema $definition)
+    {
+        if ($swgDefinition = $this->annotationsReader->getClassAnnotation($reflectionClass, SwgDefinition::class)) {
+            $definition->setRequired($swgDefinition->required);
+        }
+    }
+
     /**
      * @param \ReflectionProperty $reflectionProperty
      * @param Items|Schema        $property
@@ -60,13 +67,6 @@ class SwaggerPropertyAnnotationReader
                 if (null !== $swgProperty->readOnly) {
                     $property->setReadOnly($swgProperty->readOnly);
                 }
-            }
-        }
-
-        $swgDefinition = $this->annotationsReader->getClassAnnotation($reflectionProperty->getDeclaringClass(), SwgDefinition::class);
-        if ($swgDefinition instanceof SwgDefinition) {
-            if (in_array($reflectionProperty->getName(), $swgDefinition->required)) {
-                $property->setRequired(true);
             }
         }
     }

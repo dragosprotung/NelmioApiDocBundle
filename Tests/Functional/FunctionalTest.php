@@ -152,6 +152,7 @@ class FunctionalTest extends WebTestCase
         $this->assertEquals(
             [
                 'type' => 'object',
+                'required' => ['id', 'email'],
                 'properties' => [
                     'money' => [
                         'type' => 'number',
